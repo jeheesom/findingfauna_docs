@@ -1,0 +1,28 @@
+test already set up
+
+https://github.com/jeheesom/test.git
+
+when you start: 
+
+git pull origin master
+
+when new files have been added to it:
+
+git add .
+
+git commit -m "forth commit"
+
+git push -f origin master
+
+for findingfauna_data:
+
+start: git pull
+
+git add .
+
+git commit -m "   "
+
+git push
+
+
+

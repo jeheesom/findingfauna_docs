@@ -1,0 +1,37 @@
+
+Download Images: 
+open_images_downloader.py --class-names "Whale" --data=data/whale
+
+IMAGES=/home/james/jetson-inference/data/images
+
+detectnet --model=models/whale/ssd-mobilenet.onnx --labels=models/whale/labels.txt \
+          --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
+            "$IMAGES/whale_*.jpg" $IMAGES/test/whale_%i.jpg
+
+Retrain Module:
+
+python3 train_ssd.py --data=data/penguin --model-dir=models/penguin --batch-size=4 --workers=2 --epochs=30
+
+Converts:
+
+python3 onnx_export.py --model-dir=models/whaleepoch11
+
+IMAGES=/home/james/jetson-inference/data/images
+TESTIMAGES=/home/james/jetson-inference/python/training/detection/ssd/data/animals/test
+
+detectnet --model=models/whale/ssd-mobilenet.onnx --labels=models/whale/labels.txt \
+          --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
+            "$TESTIMAGES/whale_*.jpg" $IMAGES/747images/whale_%i.jpg
+
+
+ python3 train_ssd.py --dataset-type=voc --data=data/penguin --model-dir=models/penguin
+
+python3 train_ssd.py --dataset-type=voc --data=data/smallpenguin --model-dir=models/smallpenguin
+
+cd jetson-inference/python/training/detection/ssd
+
+NET=smallpenguin
+
+detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
+          --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
+            /dev/video0
