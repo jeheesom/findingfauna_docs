@@ -28,10 +28,13 @@ detectnet --model=models/whale/ssd-mobilenet.onnx --labels=models/whale/labels.t
 
 python3 train_ssd.py --dataset-type=voc --data=data/smallpenguin --model-dir=models/smallpenguin
 
-cd jetson-inference/python/training/detection/ssd
+
+%%The following lines run a model on a live video feed
+
+cd jetson-inference/python/training/detection/ssd/models
 
 NET=smallpenguin
 
 detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
-            /dev/video0
+            csi://0
