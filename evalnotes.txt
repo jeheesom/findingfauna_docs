@@ -1,0 +1,48 @@
+Testing Notes:
+
+For help:
+python3 eval_ssd.py --help
+
+EVAL_PATH=jetson-inference/python/training/detection/ssd
+
+MODELPATH=findingfauna_modules/detection/smallpenguin
+
+DATAPATH=jetson-inference/python/training/detection/ssd/data/smallpenguin
+
+LABELPATH=jetson-inference/python/training/detection/ssd/data/smallpenguin
+
+python3 $EVAL_PATH/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/ssd-mobilenet.onnx --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH/labels.txt
+
+
+
+
+usage: eval_ssd.py [-h] [--net NET] [--trained_model TRAINED_MODEL]
+                   [--dataset_type DATASET_TYPE] [--dataset DATASET]
+                   [--label_file LABEL_FILE] [--use_cuda USE_CUDA]
+                   [--use_2007_metric USE_2007_METRIC]
+                   [--nms_method NMS_METHOD] [--iou_threshold IOU_THRESHOLD]
+                   [--eval_dir EVAL_DIR] [--mb2_width_mult MB2_WIDTH_MULT]
+
+SSD Evaluation on VOC Dataset.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --net NET             The network architecture, it should be of mb1-ssd,
+                        mb1-ssd-lite, mb2-ssd-lite or vgg16-ssd.
+  --trained_model TRAINED_MODEL
+  --dataset_type DATASET_TYPE
+                        Specify dataset type. Currently support voc and
+                        open_images.
+  --dataset DATASET     The root directory of the VOC dataset or Open Images
+                        dataset.
+  --label_file LABEL_FILE
+                        The label file path.
+  --use_cuda USE_CUDA
+  --use_2007_metric USE_2007_METRIC
+  --nms_method NMS_METHOD
+  --iou_threshold IOU_THRESHOLD
+                        The threshold of Intersection over Union.
+  --eval_dir EVAL_DIR   The directory to store evaluation results.
+  --mb2_width_mult MB2_WIDTH_MULT
+                        Width Multiplifier for MobilenetV2
+
