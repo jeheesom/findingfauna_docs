@@ -1,12 +1,36 @@
+Set Directory
+cd jetson-inference/python/training/detection/ssd
 
-Download Images: 
+Get Image Stats:
+python3 open_images_downloader.py --stats-only --class-names "Apple,Orange,Banana,Strawberry,Grape,Pear,Pineapple,Watermelon" --data=data/fruit
+
+Download Limited amount of images:
+python3 open_images_downloader.py --max-images=2000 --class-names "Apple,Orange,Banana,Strawberry,Grape,Pear,Pineapple,Watermelon" --data=data/fruit2000
+
+Download all images: 
 open_images_downloader.py --class-names "Whale" --data=data/whale
+
+Train on downloaded images:
+
+python3 train_ssd.py --data=data/fruit2000 --model-dir=models/fruit2000_1 --batch-size=2 --workers=0 --epochs=15
+
+Monitor Memory:
+tegrastats --interval 5000
+
+Convert Produced Model to ONIXX:
+python3 onnx_export.py --model-dir=models/fruit2000_1
+
+
+
+
+
 
 IMAGES=/home/james/jetson-inference/data/images
 
 detectnet --model=models/whale/ssd-mobilenet.onnx --labels=models/whale/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
             "$IMAGES/whale_*.jpg" $IMAGES/test/whale_%i.jpg
+
 
 Retrain Module:
 

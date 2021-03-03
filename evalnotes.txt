@@ -5,15 +5,25 @@ python3 eval_ssd.py --help
 
 EVAL_PATH=jetson-inference/python/training/detection/ssd
 
-MODELPATH=findingfauna_modules/detection/smallpenguin
+MODELPATH=jetson-inference/python/training/detection/ssd/models/fruit1000_3
+
+DATAPATH=jetson-inference/python/training/detection/ssd/data/fruit1000
+
+LABELPATH=jetson-inference/python/training/detection/ssd/models/fruit1000_3
+
+python3 $EVAL_PATH/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/ssd-mobilenet.onnx --dataset_type=open_images --dataset=$DATAPATH --label_file=$LABELPATH/labels.txt
+
+For Small Penguin:
+
+EVAL_PATH=jetson-inference/python/training/detection/ssd
+
+MODELPATH=jetson-inference/python/training/detection/ssd/models/smallpenguin
 
 DATAPATH=jetson-inference/python/training/detection/ssd/data/smallpenguin
 
-LABELPATH=jetson-inference/python/training/detection/ssd/data/smallpenguin
+LABELPATH=jetson-inference/python/training/detection/ssd/models/smallpenguin
 
 python3 $EVAL_PATH/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/ssd-mobilenet.onnx --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH/labels.txt
-
-
 
 
 usage: eval_ssd.py [-h] [--net NET] [--trained_model TRAINED_MODEL]
