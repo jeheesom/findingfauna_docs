@@ -1,0 +1,18 @@
+SWAP:
+
+2 types of swap in use
+
+1: zram: The swap that comes as default.
+
+View:
+zramctl
+
+Edit:
+
+sudo gedit /etc/systemd/nvzramconfig.sh
+
+change line:
+
+mem=$((("${totalmem}" / 1 / "${NRDEVICES}") * 1024))
+
+change the 1 to a 2 to reduce back to default
