@@ -15,16 +15,16 @@ python3 $EVAL_PATH/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/ssd-mobi
 
 For Small Penguin:
 
-EVAL_PATH=jetson-inference/python/training/detection/ssd
+EVAL_PATH=jetson-inference/python/training/detection/ssd/eval_ssd.py
 
-MODELPATH=jetson-inference/python/training/detection/ssd/models/smallpenguin
+MODELPATH=jetson-inference/python/training/detection/ssd/models/mydata
 
 DATAPATH=jetson-inference/python/training/detection/ssd/data/smallpenguin
 
-LABELPATH=jetson-inference/python/training/detection/ssd/models/smallpenguin
+LABELPATH=jetson-inference/python/training/detection/ssd/models/mydata
 
-python3 $EVAL_PATH/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/ssd-mobilenet.onnx --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH/labels.txt
-
+python3 jetson-inference/python/training/detection/ssd/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/mb1-ssd-Epoch-1-Loss-8.148975276947022.pth --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH/labels.txt
+python get a text fule
 
 usage: eval_ssd.py [-h] [--net NET] [--trained_model TRAINED_MODEL]
                    [--dataset_type DATASET_TYPE] [--dataset DATASET]

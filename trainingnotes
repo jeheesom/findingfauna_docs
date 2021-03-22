@@ -25,7 +25,7 @@ Convert Produced Model to ONIXX:
 python3 onnx_export.py --model-dir=models/fruit1000_4
 
 
-
+python3 train_ssd.py --dataset-type=voc --data=/home/james/jetson-inference/python/training/detection/ssd/data/smallpenguin/ --model-dir=models/mydata --batch-size=1 --workers=0 --epochs=2
 
 
 
