@@ -42,7 +42,7 @@ python3 train_ssd.py --data=data/penguin --model-dir=models/penguin --batch-size
 
 Converts:
 
-python3 onnx_export.py --model-dir=models/whaleepoch11
+python3 onnx_export.py --model-dir=/home/james/findingfauna_modules/detection/fruit1000_5/7
 
 IMAGES=/home/james/jetson-inference/data/images
 TESTIMAGES=/home/james/jetson-inference/python/training/detection/ssd/data/animals/test
