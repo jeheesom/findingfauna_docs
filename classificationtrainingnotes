@@ -1,0 +1,3 @@
+cd jetson-inference/python/training/classification
+
+python3 train.py --model-dir=models/class_hump/blue /home/james/findingfauna_data_732/class_hump_blue/class_hump_blue_ttv/

@@ -17,14 +17,30 @@ For Small Penguin:
 
 EVAL_PATH=jetson-inference/python/training/detection/ssd/eval_ssd.py
 
-MODELPATH=jetson-inference/python/training/detection/ssd/models/mydata
+MODELPATH=jetson-inference/python/training/detection/ssd/models/whale3
 
 DATAPATH=jetson-inference/python/training/detection/ssd/data/smallpenguin
 
 LABELPATH=jetson-inference/python/training/detection/ssd/models/mydata
 
 python3 jetson-inference/python/training/detection/ssd/eval_ssd.py --net=mb1-ssd --trained_model=$MODELPATH/mb1-ssd-Epoch-1-Loss-8.148975276947022.pth --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH/labels.txt
-python get a text fule
+
+
+Tester:
+EVAL_PATH=jetson-inference/python/training/detection/ssd/eval_ssd_copy.py
+
+MODELPATH=/home/james/findingfauna_model_488/mb1-ssd-Epoch-0-Loss-7.609527538220088.pth
+
+DATAPATH=/home/james/findingfauna_data_488/pascal/
+
+LABELPATH=/home/james/findingfauna_model_488/10-100/labels.txt
+
+EVALPATH=/home/james/findingfauna_model_488/model_evaluation/test/
+
+python3 $EVAL_PATH --net=mb1-ssd --trained_model=$MODELPATH --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH --eval_dir=$EVALPATH
+
+
+get LABELPATH a text fule
 
 usage: eval_ssd.py [-h] [--net NET] [--trained_model TRAINED_MODEL]
                    [--dataset_type DATASET_TYPE] [--dataset DATASET]

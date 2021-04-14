@@ -1,0 +1,7 @@
+Image_Name,Class_Name,Class_ID,Confidence
+anomaly_1_0.jpg,bluewhale,0,0.774
+anomaly_2_0.jpg,bluewhale,0,0.774
+anomaly_3_0.jpg,humpbackwhale,1,0.606
+anomaly_3_1.jpg,humpbackwhale,1,0.634
+anomaly_4_0.jpg,humpbackwhale,1,0.606
+anomaly_4_1.jpg,humpbackwhale,1,0.634

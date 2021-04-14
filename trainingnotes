@@ -8,15 +8,15 @@ Download Limited amount of images:
 python3 open_images_downloader.py --max-images=1000 --class-names "Apple,Orange,Banana,Strawberry,Grape,Pear,Pineapple,Watermelon" --data=data/fruit1000
 
 Download all images: 
-open_images_downloader.py --class-names "Whale" --data=data/whale
+python3 open_images_downloader.py --class-names "Whale" --data=/home/james/findingfauna_data_whale/
 
 Train on downloaded images:
 
-python3 train_ssd.py --data=data/fruit1000 --model-dir=models/fruit1000_4 --batch-size=2 --workers=0 --epochs=15
+python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_488/pascal/ --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale_488_0 --batch-size=1 --workers=0 --epochs=10
 
 Resume if failed: 
 
-python3 train_ssd.py --data=data/fruit1000 --model-dir=models/fruit1000_4 --resume=models/fruit1000_4/mb1-ssd-Epoch-14-Loss-5.291627645492554.pth --batch-size=2 --workers=0 --epochs=15
+python3 train_ssd.py --dataset-type=voc --data=/home/james/pascal --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale2 --resume=/home/james/jetson-inference/python/training/detection/ssd/models/whale1/mb1-ssd-Epoch-4-Loss-6.941174812316895.pth --batch-size=1 --workers=0 --epochs=5
 
 Monitor Memory:
 tegrastats --interval 5000
@@ -66,3 +66,8 @@ NET=smallpenguin
 detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
             csi://0
+
+
+python3 train_ssd.py --data=/home/james/findingfauna_data_whale/ --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale_openimages/1 --batch-size=1 --workers=0 --epochs=100
+
+python3 onnx_export.py --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale_openimages/1
