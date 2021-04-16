@@ -1,0 +1,8 @@
+size 5 is default for running in real time,
+size 9 is recomended for offline file processing
+but my real time runs with an image very second so larger sizes work.
+
+inside fiolder size 9 there are images wherte the amount of bilateral filter is varied.
+others contain fixed amount but varying size of the filter.
+
+concluded size 10 amount 175 for training, compare to base training.

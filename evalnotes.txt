@@ -39,6 +39,15 @@ EVALPATH=/home/james/findingfauna_model_488/model_evaluation/test/
 
 python3 $EVAL_PATH --net=mb1-ssd --trained_model=$MODELPATH --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH --eval_dir=$EVALPATH
 
+For Un-Sorted:
+
+EVAL_PATH=/home/james/jetson-inference/python/training/detection/ssd/eval_ssd.py
+MODELPATH=/home/james/whale_from_above_model_bilateral_unsorted/mb1-ssd-Epoch-99-Loss-41.910604520277545.pth
+DATAPATH=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/
+LABELPATH=/home/james/whale_from_above_model_bilateral_sorted/labels.txt
+EVALPATH=/home/james/whale_from_above_model_bilateral_unsorted/evaloutput/
+
+python3 $EVAL_PATH --net=mb1-ssd --trained_model=$MODELPATH --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH --eval_dir=$EVALPATH
 
 get LABELPATH a text fule
 

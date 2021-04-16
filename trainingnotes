@@ -28,12 +28,15 @@ python3 onnx_export.py --model-dir=models/fruit1000_4
 python3 train_ssd.py --dataset-type=voc --data=/home/james/jetson-inference/python/training/detection/ssd/data/smallpenguin/ --model-dir=models/mydata --batch-size=1 --workers=0 --epochs=2
 
 
+This works for testing images from file
 
-IMAGES=/home/james/jetson-inference/data/images
-
-detectnet --model=models/whale/ssd-mobilenet.onnx --labels=models/whale/labels.txt \
+IMAGES=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/temp_test/
+MODEL=/home/james/whale_from_above_model_bilateral_sorted/ssd-mobilenet.onnx
+LABELS=/home/james/whale_from_above_model_bilateral_sorted/labels.txt
+OUTPUT=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/temp_test_output/
+detectnet --model=$MODEL --labels=models/whale/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
-            "$IMAGES/whale_*.jpg" $IMAGES/test/whale_%i.jpg
+            "$IMAGES" "$OUTPUT"
 
 
 Retrain Module:
@@ -46,8 +49,8 @@ python3 onnx_export.py --model-dir=/home/james/findingfauna_modules/detection/fr
 
 IMAGES=/home/james/jetson-inference/data/images
 TESTIMAGES=/home/james/jetson-inference/python/training/detection/ssd/data/animals/test
-
-detectnet --model=models/whale/ssd-mobilenet.onnx --labels=models/whale/labels.txt \
+LABELS=
+detectnet --model=$TESTIMAGES --labels=models/whale/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
             "$TESTIMAGES/whale_*.jpg" $IMAGES/747images/whale_%i.jpg
 
@@ -70,4 +73,6 @@ detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
 
 python3 train_ssd.py --data=/home/james/findingfauna_data_whale/ --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale_openimages/1 --batch-size=1 --workers=0 --epochs=100
 
-python3 onnx_export.py --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale_openimages/1
+python3 onnx_export.py --model-dir=/home/james/whale_from_above_model_bilateral_unsorted/
+
+python3 train_ssd.py --dataset-type=voc --data=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/ --model-dir=/home/james/whale_from_above_model_bilateral_sorted/continued/ --resume=/home/james/whale_from_above_model_bilateral_sorted/mb1-ssd-Epoch-84-Loss-5.074248461496262.pth --batch-size=1 --workers=0 --epochs=15
