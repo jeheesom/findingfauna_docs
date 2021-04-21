@@ -22,7 +22,7 @@ Monitor Memory:
 tegrastats --interval 5000
 
 Convert Produced Model to ONIXX:
-python3 onnx_export.py --model-dir=models/fruit1000_4
+python3 onnx_export.py --model-dir=/home/james/wfa_sorted_model_v2/
 
 
 python3 train_ssd.py --dataset-type=voc --data=/home/james/jetson-inference/python/training/detection/ssd/data/smallpenguin/ --model-dir=models/mydata --batch-size=1 --workers=0 --epochs=2
@@ -31,7 +31,7 @@ python3 train_ssd.py --dataset-type=voc --data=/home/james/jetson-inference/pyth
 This works for testing images from file
 
 IMAGES=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/temp_test/
-MODEL=/home/james/whale_from_above_model_bilateral_sorted/ssd-mobilenet.onnx
+MODEL=/home/james/whale_from_above_model_bilateral_unsorted/ssd-mobilenet.onnx
 LABELS=/home/james/whale_from_above_model_bilateral_sorted/labels.txt
 OUTPUT=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/temp_test_output/
 detectnet --model=$MODEL --labels=models/whale/labels.txt \
@@ -71,8 +71,8 @@ detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
             csi://0
 
 
-python3 train_ssd.py --data=/home/james/findingfauna_data_whale/ --model-dir=/home/james/jetson-inference/python/training/detection/ssd/models/whale_openimages/1 --batch-size=1 --workers=0 --epochs=100
+python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_whalefromabove/ --model-dir=/home/james/wfa_sorted_model_v2/ --batch-size=1 --workers=0 --epochs=100
 
-python3 onnx_export.py --model-dir=/home/james/whale_from_above_model_bilateral_unsorted/
+python3 onnx_export.py --model-dir=/home/james/wfa_sorted_markers/
 
-python3 train_ssd.py --dataset-type=voc --data=/home/james/whale_for_preprcessing/output_15:04:2021_18:42:46/no_noise/ --model-dir=/home/james/whale_from_above_model_bilateral_sorted/continued/ --resume=/home/james/whale_from_above_model_bilateral_sorted/mb1-ssd-Epoch-84-Loss-5.074248461496262.pth --batch-size=1 --workers=0 --epochs=15
+python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_whalefromabove/ --model-dir=/home/james/wfa_sorted_model/100-199/ --resume=/home/james/wfa_sorted_model/mb1-ssd-Epoch-69-Loss-4.119445085525513.pth --batch-size=1 --workers=0 --epochs=100
