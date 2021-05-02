@@ -42,10 +42,12 @@ python3 $EVAL_PATH --net=mb1-ssd --trained_model=$MODELPATH --dataset_type=voc -
 For Un-Sorted:
 
 EVAL_PATH=/home/james/jetson-inference/python/training/detection/ssd/eval_ssd.py
-MODELPATH=/home/james/wfa_sorted_markers/mb1-ssd-Epoch-99-Loss-5.304849162697792.pth
-DATAPATH=/home/james/findingfauna_data_whalefromabove/
-LABELPATH=/home/james/wfa_sorted_markers/labels.txt
-EVALPATH=/home/james/wfa_sorted_markers/eval_output/
+MODELPATH=/home/james/whale_100epochs/mb1-ssd-Epoch-98-Loss-3.97182190053317.pth
+DATAPATH=/home/james/findingfauna_data_whale/
+LABELPATH=/home/james/whale_100epochs/labels.txt
+EVALPATH=/home/james/findingfauna_data_whale/whale_100epochs/
+
+python3 $EVAL_PATH --net=mb1-ssd --trained_model=$MODELPATH --dataset_type=open Timages --dataset=$DATAPATH --label_file=$LABELPATH --eval_dir=$EVALPATH
 
 python3 $EVAL_PATH --net=mb1-ssd --trained_model=$MODELPATH --dataset_type=voc --dataset=$DATAPATH --label_file=$LABELPATH --eval_dir=$EVALPATH
 

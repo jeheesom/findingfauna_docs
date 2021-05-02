@@ -2,10 +2,10 @@ Set Directory
 cd jetson-inference/python/training/detection/ssd
 
 Get Image Stats:
-python3 open_images_downloader.py --stats-only --class-names "Apple,Orange,Banana,Strawberry,Grape,Pear,Pineapple,Watermelon" --data=data/fruit
+python3 open_images_downloader.py --stats-only --class-names "Whale" --data=data/whale
 
 Download Limited amount of images:
-python3 open_images_downloader.py --max-images=1000 --class-names "Apple,Orange,Banana,Strawberry,Grape,Pear,Pineapple,Watermelon" --data=data/fruit1000
+python3 open_images_downloader.py --max-images=3000 --class-names "Whale,Frog,Sea lion, Sea turtle,Seahorse" --data=/home/james/bigdataset/
 
 Download all images: 
 python3 open_images_downloader.py --class-names "Whale" --data=/home/james/findingfauna_data_whale/
@@ -66,13 +66,19 @@ cd jetson-inference/python/training/detection/ssd/models
 
 NET=smallpenguin
 
+detectnet --model=/home/james/findingfauna_model_488/10-100/ssd-mobilenet.onnx --labels=/home/james/findingfauna_model_488/10-100/labels.txt \
+          --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
+            csi://0
+
+NET=smallpenguin
+
 detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
             csi://0
 
+cd jetson-inference/python/training/detection/ssd
+python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_whalefromabove/ --model-dir=/home/james/wfa_vlow_lr/ --batch-size=1 --workers=0 --epochs=100
 
-python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_whalefromabove/ --model-dir=/home/james/wfa_sorted_model_v2/ --batch-size=1 --workers=0 --epochs=100
-
-python3 onnx_export.py --model-dir=/home/james/wfa_sorted_markers/
+python3 onnx_export.py --model-dir=/home/james/wfa_vlow_lr/
 
 python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_whalefromabove/ --model-dir=/home/james/wfa_sorted_model/100-199/ --resume=/home/james/wfa_sorted_model/mb1-ssd-Epoch-69-Loss-4.119445085525513.pth --batch-size=1 --workers=0 --epochs=100
