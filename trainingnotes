@@ -22,7 +22,7 @@ Monitor Memory:
 tegrastats --interval 5000
 
 Convert Produced Model to ONIXX:
-python3 onnx_export.py --model-dir=/home/james/wfa_sorted_model_v2/
+python3 onnx_export.py --model-dir=/home/james/Downloads/150 epochs lr 0000001.h5
 
 
 python3 train_ssd.py --dataset-type=voc --data=/home/james/jetson-inference/python/training/detection/ssd/data/smallpenguin/ --model-dir=models/mydata --batch-size=1 --workers=0 --epochs=2
@@ -75,6 +75,8 @@ NET=smallpenguin
 detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt \
           --input-blob=input_0 --output-cvg=scores --output-bbox=boxes \
             csi://0
+
+python3 onnx_export.py --model-dir=/home/james/onnxconv/
 
 cd jetson-inference/python/training/detection/ssd
 python3 train_ssd.py --dataset-type=voc --data=/home/james/findingfauna_data_whalefromabove/ --model-dir=/home/james/wfa_vlow_lr/ --batch-size=1 --workers=0 --epochs=100
